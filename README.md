@@ -8,11 +8,11 @@ Term: Spring 2021
 
 + Team ##
 + Team members
-	+ team member 1
-	+ team member 2
-	+ team member 3
-	+ team member 4
-	+ team member 5
+	+ team member 1 Ai, Haosheng ha2583@columbia.edu
+	+ team member 2 Pan, Yushi yp2560@columbia.edu
+	+ team member 3 Shu, Chuyun cs3894@columbia.edu
+	+ team member 4  Xing, Yuqi yx2666@columbia.edu
+	+ team member 5 Yuan, Serena sy2657@columbia.edu
 
 + Project summary: In this project, we created a classification engine for facial emotion recognition. 
 	
