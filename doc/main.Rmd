@@ -13,7 +13,7 @@ This file is currently a template for running evaluation experiments. You should
 ```{r message=FALSE}
 #install the packages needed
 packages.used <- c("EBImage","R.matlab","readxl","dplyr","ggplot2","caret","glmnet",
-                   "WeightedROC","gbm","AUC","MASS","randomForest","pROC")
+                   "WeightedROC","gbm","AUC","MASS","randomForest","pROC", "e1071")
 
 packages.needed <- setdiff(packages.used, intersect(installed.packages()[,1], packages.used))
 
@@ -35,6 +35,7 @@ library(MASS)
 library(AUC)
 library(randomForest)
 library(pROC)
+library(e1071)
 ```
 
 ### Step 0 set work directories
@@ -650,6 +651,27 @@ Prediction performance matters, so does the running times for constructing featu
 #cat("Time for constructing testing features=", tm_feature_test[1], "s \n")
 cat("Time for training random forest with weightmodel=", tm_train[1], "s \n") 
 cat("Time for testing random forest with weight model=", tm_test[1], "s \n")
+```
+
+## Model 4: svm ( kernel = linear, radial, polynomial, 
+
+```{r}
+run.svm.polynomial.test <- F
+```
+
+Cross validation:
+```{r}
+source("../lib/svm_polynomial_best_degree.R")
+```
+
+```{r}
+max.deg = 4
+if (run.svm.polynomial.test) {
+  acc.array <- svm_polynomial_best_degree(dat_train, 5) # up to degree 5
+  max.deg <- which.max(acc.array)
+} else {
+  max.deg = 4
+}
 ```
 
 
