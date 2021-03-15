@@ -653,10 +653,13 @@ cat("Time for training random forest with weightmodel=", tm_train[1], "s \n")
 cat("Time for testing random forest with weight model=", tm_test[1], "s \n")
 ```
 
-## Model 4: svm ( kernel = linear, radial, polynomial, 
+## Model 4: svm ( kernel =  polynomial, linear, radial, sigmoid)
+
+Polynomial:
 
 ```{r}
 run.svm.polynomial.test <- F
+run.train.svm.polynomial <- F
 ```
 
 Cross validation:
@@ -673,5 +676,157 @@ if (run.svm.polynomial.test) {
   max.deg = 4
 }
 ```
+
+Train:
+```{r}
+if (run.train.svm.polynomial) {
+  sclassifier.polynomial = svm(formula=label~., data=dat_train, type="C", kernel="polynomial", degree=max.deg)
+} else{ 
+  load(file="")
+}
+```
+
+Test: 
+```{r}
+testset <- as.matrix(dat_test[, -6007])
+ypred <- predict(sclassifier.polynomial, testset) 
+```
+
+Plot (feature 1 and feature 2) :
+```{r}
+plot(sclassifier.polynomial, dat_train, formula=feature1~feature2, fill=T)
+```
+
+Evaluate:
+```{r}
+tab_svm <- table(ypred, dat_test$label)
+n1 <- tab_svm[1]
+n2 <- tab_svm[2]
+n3 <- tab_svm[3]
+n4 <- tab_svm[4]
+num <- n1+n4
+den <- n1+n2+n3+n4
+acc <- num/den
+cat("The accuracy of svm polynomial model:", acc*100, "%.\n")
+```
+
+Linear:
+
+```{r}
+run.train.svm.linear <- F
+```
+
+Train:
+```{r}
+if (run.train.svm.linear) {
+  sclassifier.linear =svm(formula=label~., data=dat_train, type="C", kernel="linear")
+ } else{
+  load(file="")
+ }
+```
+
+Test:
+```{r}
+testset <- as.matrix(dat_test[, -6007])
+ypred <- predict(sclassifier.linear, testset) 
+```
+
+Plot (feature 1 and feature 2) :
+```{r}
+plot(sclassifier.linear, dat_train, formula=feature1~feature2, fill=T)
+```
+
+Evaluate:
+```{r}
+tab_svm <- table(ypred, dat_test$label)
+n1 <- tab_svm[1]
+n2 <- tab_svm[2]
+n3 <- tab_svm[3]
+n4 <- tab_svm[4]
+num <- n1+n4
+den <- n1+n2+n3+n4
+acc <- num/den
+cat("The accuracy of svm linear model:", acc*100, "%.\n")
+```
+
+
+Radial:
+
+```{r}
+run.train.svm.radial <- F
+```
+
+Train:
+```{r}
+if (run.train.svm.radial) {
+  sclassifier.radial <- svm(formula=label~., data=dat_train, type="C", kernel="radial")
+} else {
+  load(file="")
+  }
+```
+Test: 
+```{r}
+testset <- as.matrix(dat_test[, -6007])
+ypred <- predict(sclassifier.radial, testset) 
+```
+
+Plot (feature 1 and feature 2) :
+```{r}
+plot(sclassifier.radial, dat_train, formula=feature1~feature2, fill=T)
+```
+
+Evaluate:
+```{r}
+tab_svm <- table(ypred, dat_test$label)
+n1 <- tab_svm[1]
+n2 <- tab_svm[2]
+n3 <- tab_svm[3]
+n4 <- tab_svm[4]
+num <- n1+n4
+den <- n1+n2+n3+n4
+acc <- num/den
+cat("The accuracy of svm radial model:", acc*100, "%.\n")
+```
+
+
+Sigmoid:
+```{r}
+run.train.svm.sigmoid <- F
+```
+
+Train:
+
+```{r}
+if (run.train.svm.sigmoid) {
+  sclassifier.sigmoid <- svm(formula=label~., data=dat_train, type="C", kernel="sigmoid")
+} else {
+  load(file="")
+  }
+```
+
+Test: 
+```{r}
+testset <- as.matrix(dat_test[, -6007])
+ypred <- predict(sclassifier.sigmoid, testset) 
+```
+
+Plot (feature 1 and feature 2) :
+```{r}
+plot(sclassifier.sigmoid, dat_train, formula=feature1~feature2, fill=T)
+```
+
+Evaluate:
+```{r}
+tab_svm <- table(ypred, dat_test$label)
+n1 <- tab_svm[1]
+n2 <- tab_svm[2]
+n3 <- tab_svm[3]
+n4 <- tab_svm[4]
+num <- n1+n4
+den <- n1+n2+n3+n4
+acc <- num/den
+cat("The accuracy of svm sigmoid model:", acc*100, "%.\n")
+```
+
 
 
