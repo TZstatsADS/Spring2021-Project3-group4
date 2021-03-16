@@ -774,7 +774,7 @@ cat("Time for testing random forest with weight model=", tm_test[1], "s \n")
 
 ## Model 4: svm ( kernel =  polynomial, linear, radial, sigmoid)
 
-* Polynomial:
+* Polynomial SVM:
 
 ```{r}
 run.svm.polynomial.cv.test <- FALSE
@@ -830,7 +830,7 @@ acc <- num/den
 cat("The accuracy of svm polynomial model:", acc*100, "%.\n")
 ```
 
-* Probabilistic Polynomial:
+* Probabilistic Polynomial SVM:
 
 ```{r}
 run.svm.polynomial.prob.cv.test <- FALSE
@@ -856,7 +856,7 @@ Train:
 ```{r}
 if (run.train.svm.polynomial) {
   sclassifier.polynomial.prob = svm(formula=label~., data=dat_train, type="C", kernel="polynomial", probability=TRUE, degree=max.deg)
-  save(sclassifier.polynomial, file="../output/svmclassifier_polynomial_prob.RData")
+  save(sclassifier.polynomial.prob, file="../output/svmclassifier_polynomial_prob.RData")
 } else{ 
   load(file="../output/svmclassifier_polynomial_prob.RData")
 }
@@ -891,7 +891,7 @@ cat("The auc of svm prob. polynomial model:", auc_prob)
 ```
 
 
-* Linear:
+* Linear SVM:
 
 ```{r}
 run.train.svm.linear <- FALSE
@@ -930,6 +930,49 @@ den <- n1+n2+n3+n4
 acc <- num/den
 cat("The accuracy of svm linear model:", acc*100, "%.\n")
 ```
+
+* Probabilistic Linear SVM:
+
+```{r}
+run.train.svm.linear.prob <- FALSE
+```
+
+Train:
+```{r}
+if (run.train.svm.linear.prob) {
+  sclassifier.linear.prob = svm(formula=label~., data=dat_train, type="C", kernel="linear", probability=TRUE)
+  save(sclassifier.linear.prob, file="../output/svmclassifier_linear_prob.RData")
+ } else{
+  load(file="../output/svmclassifier_linear_prob.RData")
+ }
+```
+
+Test:
+```{r}
+testset <- as.matrix(dat_test[, -6007])
+ypred_prob <- predict(sclassifier.linear.prob, testset, decision.values = TRUE, probability = TRUE)
+```
+Evaluate accuracy and auc:
+
+```{r}
+tab_svm <- table(ypred_prob, dat_test$label)
+n1 <- tab_svm[1]
+n2 <- tab_svm[2]
+n3 <- tab_svm[3]
+n4 <- tab_svm[4]
+num <- n1+n4
+den <- n1+n2+n3+n4
+acc <- num/den
+cat("The accuracy of svm probabilistic polynomial model:", acc*100, "%.\n")
+# AUC
+prob_vec <- attr(ypred_prob, "probabilities")
+prob_vec_0 <- prob_vec[,1]
+prob_vec_1 <- prob_vec[,2]
+r_prob <- roc(predictor= prob_vec_1, response= factor(dat_test$label))
+auc_prob <- auc(r_prob, min=0, max=1)
+cat("The auc of svm prob. linear model:", auc_prob)
+```
+
 
 
 * Radial:
