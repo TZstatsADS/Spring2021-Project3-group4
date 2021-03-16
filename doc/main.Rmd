@@ -852,6 +852,21 @@ if (run.svm.polynomial.prob.cv.test) {
 }
 ```
 
+Train:
+```{r}
+if (run.train.svm.polynomial) {
+  sclassifier.polynomial.prob = svm(formula=label~., data=dat_train, type="C", kernel="polynomial", probability=TRUE, degree=max.deg)
+  save(sclassifier.polynomial, file="../output/svmclassifier_polynomial_prob.RData")
+} else{ 
+  load(file="../output/svmclassifier_polynomial_prob.RData")
+}
+```
+
+
+Test:
+
+Evaluate:
+
 
 * Linear:
 
