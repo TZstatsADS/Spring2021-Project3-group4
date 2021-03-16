@@ -1072,10 +1072,10 @@ den <- n1+n2+n3+n4
 acc <- num/den
 cat("The accuracy of svm probabilistic radial model:", acc*100, "%.\n")
 # AUC
-prob_vec_poly <- attr(ypred_prob, "probabilities")
-prob_vec_poly_0 <- prob_vec_poly[,1]
-prob_vec_poly_1 <- prob_vec_poly[,2]
-r_prob <- roc(predictor= prob_vec_poly_1, response= factor(dat_test$label))
+prob_vec <- attr(ypred_prob, "probabilities")
+prob_vec_0 <- prob_vec_poly[,1]
+prob_vec_1 <- prob_vec_poly[,2]
+r_prob <- roc(predictor= prob_vec_1, response= factor(dat_test$label))
 auc_prob <- auc(r_prob, min=0, max=1)
 cat("The auc of svm prob. radial model:", auc_prob)
 ```
@@ -1139,6 +1139,41 @@ if (run.train.svm.sigmoid.prob) {
   load(file="../output/svmclassifier_sigmoid_prob.RData")
   }
 ```
+
+Test: 
+```{r}
+testset <- as.matrix(dat_test[, -6007])
+ypred_prob <- predict(sclassifier.sigmoid.prob, testset, decision.values = TRUE, probability = TRUE)
+```
+
+Plot (feature 1 and feature 2) :
+```{r}
+plot(sclassifier.sigmoid.prob, dat_train, formula=feature1~feature2, fill=T)
+```
+
+
+Evaluate accuracy and auc:
+
+```{r}
+tab_svm <- table(ypred_prob, dat_test$label)
+n1 <- tab_svm[1]
+n2 <- tab_svm[2]
+n3 <- tab_svm[3]
+n4 <- tab_svm[4]
+num <- n1+n4
+den <- n1+n2+n3+n4
+acc <- num/den
+cat("The accuracy of svm probabilistic sigmoid model:", acc*100, "%.\n")
+# AUC
+prob_vec <- attr(ypred_prob, "probabilities")
+prob_vec_0 <- prob_vec_poly[,1]
+prob_vec_1 <- prob_vec_poly[,2]
+r_prob <- roc(predictor= prob_vec_1, response= factor(dat_test$label))
+auc_prob <- auc(r_prob, min=0, max=1)
+cat("The auc of svm prob. sigmoid model:", auc_prob)
+```
+
+
 
 
 ## Model 5: elastic net
