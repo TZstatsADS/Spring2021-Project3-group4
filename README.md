@@ -19,7 +19,7 @@ Term: Spring 2021
 	
 **Contribution statement**: All team members approve our work presented in this GitHub repository including this contributions statement. 
 
-Pan, Yushi: Presenter. Cross validated and implemented the baseline model. Implemented PCA to the features, chose the best number of principal components, and used those features to implement the LDA model. Contributed and organized presentation slides. Combined works from group members and organized the main.rmd file.
+Pan, Yushi: Presenter. Cross validated and implemented the baseline model. Implemented PCA to the features, chose the best number of principal components, and used those features to implement the LDA model. Used SMOTE technique to deal with the imbalanced data for the XGBoost model. Debugged SVM models with different kernels. Contributed and organized presentation slides. Combined works from group members and organized the main.rmd file.
 
 Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model with weight, tuning the hyperparameter, cross validation. I participated in every stages of project's discussion and write the README file.
 
