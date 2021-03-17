@@ -1101,9 +1101,9 @@ Train:
 tm_svm_radial_prob_train <- NA
 if (run.train.svm.radial.prob) {
   tm_svm_radial_prob_train <- system.time(sclassifier.radial.prob <- svm(formula=label~., data=dat_train, type="C", kernel="radial", probability=TRUE))
-  save(sclassifier.radial.prob, file="..output/svmclassifier_radial.RData")
+  save(sclassifier.radial.prob, file="..output/svmclassifier_radial_prob.RData")
 } else {
-  load(file="../output/svmclassifier_radial.RData")
+  load(file="../output/svmclassifier_radial_prob.RData")
   }
 ```
 
