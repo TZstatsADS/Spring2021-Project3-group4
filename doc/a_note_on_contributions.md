@@ -9,12 +9,14 @@ Post your title, team members, project abstract and a contribution statement in 
 Below is an example. If no contribution statement is provided, we will insert a default statement that goes "**All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement**. "
 
 ---
-Sample project README statement.
+Contribution statement: All team members approve our work presented in this GitHub repository including this contributions statement.
 
-Project xxx
+Pan, Yushi: Presenter. Cross validated and implemented the baseline model. Implemented PCA to the features, chose the best number of principal components, and used those features to implement the LDA model. Used SMOTE technique to deal with the imbalanced data for the XGBoost model. Debugged SVM models with different kernels. Contributed and organized presentation slides. Combined works from group members and organized the main.rmd file.
 
-Team members: Avi Bond, Comma Deed, En Funn, Gem Hon
+Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model with weight, tuning the hyperparameter, cross validation. I participated in every stages of project's discussion and write the README file.
 
-Summary: In this project, we developed a new method and improved the classification accuracy for images of cats and dogs to 99.9%
+Ai, Haosheng:constructed XGBoost model, testing on different tuning hyperparameters to optimize model. Constructed the test-day file that use to test on test set on the presentation day. Contributed to the presentation slides, main.rmd file.
 
-[Contribution Statement] AB, CD, EF and GH designed the study. AB and CD developed baseline classification model for evaluation. EF and GH explored feature engineering for improving the baseline model. AB, EF and GH discussed and designed the model evaluation protocol. CD carried out the computation for model evaluation. All team members contributed to the GitHub repository and prepared the presentation. All team members approve our work presented in our GitHub repository including this contribution statement.
+Shu, Chunyun: constructed K-Nearest Neighbor model, tuning the hyperparameter, performing cross validation and testing, recorded scores from evaluation, in both R and Python. She also ontributed to the presentation slides.
+
+Yuan, Serena: constructed SVM models, probabilistic and non-probabilistic, tuned the parameters, performed cross validation, plotted the linear SVM model, recorded scores from evaluation. Contributed to the presentation slides, participated in all project meetings, helped others with debugging.
