@@ -18,8 +18,12 @@ xgbtrain <- function(features, labels, w = NULL, eta_val = 0.05 ,gamma = 0.1, lm
                    nrounds = nr, 
                    verbose = 0, 
                    max_depth = md,
-                  # min_child_weight = 0.3,
-                   colsample_bytree = 0.6
+                   
+                   alpha = 1,
+                   min_child_weight = 5,
+                   colsample_bytree = 0.8,
+                   subsample = 0.8,
+                   nthread = 4
                    ) 
   
   return(model)
