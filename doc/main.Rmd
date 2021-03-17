@@ -779,6 +779,7 @@ cat("Time for testing random forest with weight model=", tm_test[1], "s \n")
 ```{r}
 run.svm.polynomial.cv.test <- FALSE
 run.train.svm.polynomial <- FALSE
+plot.svm.polynomial <- FALSE
 ```
 
 Cross validation:
@@ -815,7 +816,9 @@ ypred <- predict(sclassifier.polynomial, testset)
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.polynomial, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.polynomial) {
+  plot(sclassifier.polynomial, dat_train, formula=feature1~feature2, fill=T)
+}
 ```
 
 Evaluate:
@@ -836,6 +839,7 @@ cat("The accuracy of svm polynomial model:", acc*100, "%.\n")
 ```{r}
 run.svm.polynomial.prob.cv.test <- FALSE
 run.svm.polynomial.prob.train <- FALSE
+plot.svm.polynomial.prob <- FALSE
 ```
 
 Cross validation:
@@ -866,7 +870,9 @@ if (run.train.svm.polynomial) {
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.polynomial.prob, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.polynomial.prob) {
+  plot(sclassifier.polynomial.prob, dat_train, formula=feature1~feature2, fill=T)
+  }
 ```
 
 
@@ -903,6 +909,7 @@ cat("The auc of svm prob. polynomial model:", auc_prob)
 
 ```{r}
 run.train.svm.linear <- FALSE
+plot.svm.linear <- FALSE
 ```
 
 Train:
@@ -923,7 +930,9 @@ ypred <- predict(sclassifier.linear, testset)
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.linear, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.linear) {
+  plot(sclassifier.linear, dat_train, formula=feature1~feature2, fill=T)
+}
 ```
 
 Evaluate:
@@ -943,6 +952,7 @@ cat("The accuracy of svm linear model:", acc*100, "%.\n")
 
 ```{r}
 run.train.svm.linear.prob <- FALSE
+plot.svm.linear.prob <- FALSE
 ```
 
 Train:
@@ -958,7 +968,9 @@ if (run.train.svm.linear.prob) {
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.linear.prob, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.linear.prob) {
+  plot(sclassifier.linear.prob, dat_train, formula=feature1~feature2, fill=T)
+}
 ```
 
 
@@ -994,6 +1006,7 @@ cat("The auc of svm prob. linear model:", auc_prob)
 
 ```{r}
 run.train.svm.radial <- FALSE
+plot.svm.radial <- FALSE
 ```
 
 Train:
@@ -1013,7 +1026,9 @@ ypred <- predict(sclassifier.radial, testset)
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.radial, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.radial) {
+  plot(sclassifier.radial, dat_train, formula=feature1~feature2, fill=T)
+}
 ```
 
 Evaluate:
@@ -1032,6 +1047,7 @@ cat("The accuracy of svm radial model:", acc*100, "%.\n")
 * Probabilistic Radial SVM:
 ```{r}
 run.train.svm.radial.prob <- FALSE
+plot.svm.radial.prob <- FALSE
 ```
 
 Train:
@@ -1052,7 +1068,9 @@ ypred <- predict(sclassifier.radial, testset)
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.radial.prob, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.radial.prob) {
+  plot(sclassifier.radial.prob, dat_train, formula=feature1~feature2, fill=T)
+}
 ```
 
 Test:
@@ -1088,6 +1106,7 @@ cat("The auc of svm prob. radial model:", auc_prob)
 
 ```{r}
 run.train.svm.sigmoid <- FALSE
+plot.svm.sigmoid <- FALSE
 ```
 
 Train:
@@ -1109,7 +1128,9 @@ ypred <- predict(sclassifier.sigmoid, testset)
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.sigmoid, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.sigmoid) {
+  plot(sclassifier.sigmoid, dat_train, formula=feature1~feature2, fill=T)
+}
 ```
 
 Evaluate:
@@ -1129,6 +1150,7 @@ cat("The accuracy of svm sigmoid model:", acc*100, "%.\n")
 
 ```{r}
 run.train.svm.sigmoid.prob <- FALSE
+plot.svm.sigmoid.prob <- FALSE
 ```
 
 Train:
@@ -1150,7 +1172,9 @@ ypred_prob <- predict(sclassifier.sigmoid.prob, testset, decision.values = TRUE,
 
 Plot (feature 1 and feature 2) :
 ```{r}
-plot(sclassifier.sigmoid.prob, dat_train, formula=feature1~feature2, fill=T)
+if (plot.svm.sigmoid.prob) {
+  plot(sclassifier.sigmoid.prob, dat_train, formula=feature1~feature2, fill=T)
+}
 ```
 
 
