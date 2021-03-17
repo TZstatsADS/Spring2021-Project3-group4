@@ -800,8 +800,9 @@ if (run.svm.polynomial.cv.test) {
 
 Train:
 ```{r}
+tm_svm_polynomial_train <- NA
 if (run.train.svm.polynomial) {
-  sclassifier.polynomial = svm(formula=label~., data=dat_train, type="C", kernel="polynomial", degree=max.deg)
+  tm_svm_polynomial_train <- system.time( sclassifier.polynomial <- svm(formula=label~., data=dat_train, type="C", kernel="polynomial", degree=max.deg) )
   save(sclassifier.polynomial, file="../output/svmclassifier_polynomial.RData")
 } else{ 
   load(file="../output/svmclassifier_polynomial.RData")
@@ -810,8 +811,9 @@ if (run.train.svm.polynomial) {
 
 Test: 
 ```{r}
+tm_svm_polynomial_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred <- predict(sclassifier.polynomial, testset) 
+tm_svm_polynomial_test <- system.time( ypred <- predict(sclassifier.polynomial, testset))
 ```
 
 Plot (feature 1 and feature 2) :
@@ -823,6 +825,7 @@ if (plot.svm.polynomial) {
 
 Evaluate:
 ```{r}
+
 tab_svm <- table(ypred, dat_test$label)
 n1 <- tab_svm[1]
 n2 <- tab_svm[2]
@@ -833,6 +836,14 @@ den <- n1+n2+n3+n4
 acc <- num/den
 cat("The accuracy of svm polynomial model:", acc*100, "%.\n")
 ```
+
+Running Times:
+
+```{r random forest running_time}
+cat("Time for training model=", tm_svm_polynomial_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_polynomial_test[1], "s \n")
+```
+
 
 * Probabilistic Polynomial SVM:
 
