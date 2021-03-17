@@ -23,7 +23,7 @@ Pan, Yushi: Presenter. Cross validated and implemented the baseline model. Imple
 
 Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model with weight, tuning the hyperparameter, cross validation. I participated in every stages of project's discussion and write the README file.
 
-Ai, Haosheng:
+Ai, Haosheng:constructed XGBoost model, testing on different tuning hyperparameters to optimize model. Constructed the test-day file that use to test on test set on the presentation day. Contributed to the presentation slides, main.rmd file, participated in all project meetings, helped others with debugging. 
 
 Shu, Chunyun: constructed K-Nearest Neighbor model tuning the hyperparameter and cross validation.
 
