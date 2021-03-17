@@ -27,7 +27,7 @@ Ai, Haosheng:
 
 Shu, Chunyun: constructed K-Nearest Neighbor model tuning the hyperparameter and cross validation.
 
-Yuan, Serna:
+Yuan, Serena: constructed SVM models, probabilistic and non-probabilistic, tuned the parameters, performed cross validation, plotted the linear SVM model, recorded scores from evaluation. Contributed to the presentation slides, participated in all project meetings, helped others with debugging. 
 
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
