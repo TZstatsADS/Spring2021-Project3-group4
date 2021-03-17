@@ -25,7 +25,7 @@ Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model wi
 
 Ai, Haosheng:
 
-Shu, Chunyun: constructed K Nearest Neighborhood model tuning the hyperparameter and cross validation.
+Shu, Chunyun: constructed K-Nearest Neighbor model tuning the hyperparameter and cross validation.
 
 Yuan, Serna:
 
