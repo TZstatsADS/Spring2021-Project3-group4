@@ -343,7 +343,7 @@ R setup and train
 
 source("../lib/train_XGBoost.R")
 source("../lib/test_XGBoost.R")
-source("../lib/cross_validation_XGBoost.R")
+source("../lib/cross_vallidation_XGBoost.R")
 
 feature_train = as.matrix(dat_train[, -6007])
 label_train = as.integer(dat_train$label) 
@@ -423,8 +423,8 @@ accu_xgboost <- sum(weight_test * (label_pred == label_test)) / sum(weight_test)
 tpr.fpr <- WeightedROC(prob_pred, label_test, weight_test)
 auc_xgboost <- WeightedAUC(tpr.fpr)
 
-cat("The accuracy of model:", model_labels[which.max(xgb_res_cv$mean_AUC)], "is", accu*100, "%.\n")
-cat("The AUC of model:", model_labels[which.max(xgb_res_cv$mean_AUC)], "is", auc, ".\n")
+cat("The accuracy of model:", model_labels[which.max(xgb_res_cv$mean_AUC)], "is", accu_xgboost*100*100, "%.\n")
+cat("The AUC of model:", model_labels[which.max(xgb_res_cv$mean_AUC)], "is", auc_xgboost, ".\n")
 
 cat("Time for constructing training features=", tm_feature_train[1], "s \n")
 cat("Time for constructing testing features=", tm_feature_test[1], "s \n")
