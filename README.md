@@ -25,7 +25,7 @@ Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model wi
 
 Ai, Haosheng:constructed XGBoost model, testing on different tuning hyperparameters to optimize model. Constructed the test-day file that use to test on test set on the presentation day. Contributed to the presentation slides, main.rmd file. 
 
-Shu, Chunyun: constructed K-Nearest Neighbor model, tuning the hyperparameter, cross validation and recorded scores from evaluation, both in R and Python. She also ontributed to the presentation slides.
+Shu, Chunyun: constructed K-Nearest Neighbor model, tuning the hyperparameter, performing cross validation and testing, recorded scores from evaluation, in both R and Python. She also ontributed to the presentation slides.
 
 Yuan, Serena: constructed SVM models, probabilistic and non-probabilistic, tuned the parameters, performed cross validation, plotted the linear SVM model, recorded scores from evaluation. Contributed to the presentation slides, participated in all project meetings, helped others with debugging. 
 
