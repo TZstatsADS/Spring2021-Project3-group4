@@ -503,7 +503,7 @@ res_cv_pca[order(res_cv_pca$mean_error),]
 
 
 ```{r pca_plot}
-plot(pca.list, pc, type="l", xlab="number of PCs", ylab="accuracy")
+plot(pca.list, pc, type="l", xlab="number of PCs", ylab="mean error")
 ```
 
 ```{r choose_best_pc}
