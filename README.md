@@ -14,14 +14,14 @@ Term: Spring 2021
 	+ Xing, Yuqi yx2666@columbia.edu
 	+ Yuan, Serena sy2657@columbia.edu
 
-+ Project summary: In this project, we created a classification engine for facial emotion recognition. We used a Gradient Boosting Machine (GBM) as a baseline model on 3000 facial images with the extracted features to recognized the emotion from new facial images. Our group gives six typical machine learn algorithms (PCA+LDA, Random Forest(unweighted), Random Forest(weighted), SVM(kernel = polynomial, linear, radial, sigmoid), Elastic Net and xgboost). We trained different models on the given data set, found the optimized parameters through cross-validation and compared them by mean error, auc, training time and testing time. We found xgboost improve the baseline model the most.
++ Project summary: In this project, we created a classification engine for facial emotion recognition. We used Gradient Boosting Machine (GBM) as our baseline model on 3000 facial images with the extracted features to recognized the emotion from new facial images. Our group gives six typical machine learn algorithms (PCA+LDA, Random Forest(unweighted), Random Forest(weighted), SVM(kernel = polynomial, linear, radial, sigmoid), Elastic Net and xgboost). We trained different models on the given data set, found the optimized parameters through cross-validation and compared them by mean error, auc, training time and testing time. We found xgboost model improves the baseline model the most.
 
 	
 **Contribution statement**: All team members approve our work presented in this GitHub repository including this contributions statement. 
 
-Pan, Yushi:
+Pan, Yushi: Presenter. Cross validated and implemented the baseline model. Implemented PCA to the features, chose the best number of principal components, and used those features to implement the LDA model. Contributed and organized presentation slides. Combined works from group members and organized the main.rmd file.
 
-Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model with weight, tuning the hyperparameter, cross validation.I participated in every stages of project's discussion and write the README file.
+Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model with weight, tuning the hyperparameter, cross validation. I participated in every stages of project's discussion and write the README file.
 
 Ai, Haosheng:
 
