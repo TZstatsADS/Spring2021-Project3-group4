@@ -2,7 +2,7 @@
 # Author: Serena Yuan
 # project 3 
 
-svm_polynomial_best_degree <- function(dat_train, K) {
+svm_polynomial_best_degree <- function(dat_train, dat_test, K, testset) {
 
   cv.acc <- rep(NA, K)
   for (i in 1:K){
