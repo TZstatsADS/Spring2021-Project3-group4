@@ -21,5 +21,5 @@ svm_polynomial_prob_best_degree <- function(dat_train, dat_test, K, testset) {
     cv.acc[i] <- acc
 
   }
-  return cv.acc # choose the k with max accuracy
+  return(cv.acc) # choose the k with max accuracy
  }
