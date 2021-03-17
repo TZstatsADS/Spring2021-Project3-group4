@@ -1272,6 +1272,7 @@ cat("Time for testing model=", tm_svm_sigmoid_prob_test[1], "s \n")
 
 ```{r}
 source("../lib/cross_validation_enet.R")
+source("../lib/train_gaussian.R")
 ```
 
 ```{r runcv}
