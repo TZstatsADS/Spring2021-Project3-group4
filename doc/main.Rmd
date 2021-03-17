@@ -422,7 +422,7 @@ Choose best model
 par_best <- lmbd[which.max(xgb_res_cv$mean_AUC)] # lmbd[which.max(res_cv$mean_AUC)]
 
 if (run.train.xgb){
-  xgb_tm_train <- system.time(fit_train <- xgbtrain(feature_train, label_train, w = NULL, eta_val = 0.08 ,gamma = 0.4, lmd = par_best, nr = 200, md = 5))
+  xgb_tm_train <- system.time(fit_train <- xgbtrain(feature_train_balanced, label_train_balanced, w = NULL, eta_val = 0.08 ,gamma = 0.4, lmd = par_best, nr = 200, md = 5))
   save(fit_train, xgb_tm_train, file="../output/xgb_fit_train.RData")
 } else {
   load(file="../output/xgb_fit_train.RData")
@@ -514,6 +514,7 @@ par_best <- pca.list[which.min(pc)]
 Train the model with the entire training set using the selected model (model parameter) via cross-validation.
 
 ```{r get_pc}
+# since the data file is too large, we are unable to upload it on Github, set run.pca = TRUE to get the data, but note that it takes time
 if(run.pca) {
   #training dataset
   pca <- prcomp(feature_train)
