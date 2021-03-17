@@ -19,9 +19,13 @@ Term: Spring 2021
 	
 **Contribution statement**: All team members approve our work presented in this GitHub repository including this contributions statement. 
 Pan, Yushi:
+
 Xing, Yuqi: constructed Random Forest model(unweight) and Random Forest model with weight, tuning the hyperparameter, cross validation.I participated in every stages of project's discussion and write the README file.
+
 Ai, Haosheng:
+
 Yuan, Serna:
+
 Shu, Chunyun:
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
