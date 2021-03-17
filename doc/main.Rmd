@@ -788,6 +788,7 @@ source("../lib/svm_polynomial_best_degree.R")
 
 ```{r}
 max.deg = 4
+testset <- as.matrix(dat_test[, -6007])
 if (run.svm.polynomial.cv.test) {
   acc.array <- svm_polynomial_best_degree(dat_train, dat_test, 5, testset) # up to degree 5
   max.deg <- which.max(acc.array)
