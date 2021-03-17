@@ -351,8 +351,8 @@ if(run.cv.xgb){
   xgb_res_cv <- matrix(0, nrow = length(lmbd), ncol = 4)
   for(i in 1:length(lmbd)){
     cat("lambda = ", lmbd[i], "\n")
-    xgb_res_cv[i,] <- xgbcv.function(features = feature_train, labels = label_train, K,eta_val =0.05,
-                                     lmd = lmbd[i], gamma = 0.1,md = 5,nr = 500,  reweight = sample.reweight)
+    xgb_res_cv[i,] <- xgbcv.function(features = feature_train, labels = label_train, K,eta_val =0.08,
+                                   lmd = lmbd[i],gamma = 0.4,md = 5,nr = 200,  reweight = sample.reweight)
   save(xgb_res_cv, file="../output/xgb_res_cv.RData")
   }
 }else{
@@ -394,9 +394,9 @@ for (v in unique(label_train)){
   weight_train[label_train == v] = 0.5 * length(label_train) / length(label_train[label_train == v])
 }
 if (sample.reweight){
-  xgb_tm_train <- system.time(fit_train <- xgbtrain(feature_train, label_train, w = weight_train, eta_val = 0.05 ,gamma = 0.1, lmd = par_best, nr = 500, md = 5))
+  xgb_tm_train <- system.time(fit_train <- xgbtrain(feature_train, label_train, w = weight_train, eta_val = 0.08 ,gamma = 0.4, lmd = par_best, nr = 200, md = 5))
 } else {
-  xgb_tm_train <- system.time(fit_train <- xgbtrain(feature_train, label_train, w = NULL, eta_val = 0.05 ,gamma = 0.1, lmd = par_best, nr = 500, md = 5))
+  xgb_tm_train <- system.time(fit_train <- xgbtrain(feature_train, label_train, w = NULL, eta_val = 0.08 ,gamma = 0.4, lmd = par_best, nr = 200, md = 5))
 }
 save(fit_train, file="../output/xgb_fit_train.RData")
 ```
