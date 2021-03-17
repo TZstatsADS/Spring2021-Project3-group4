@@ -839,7 +839,7 @@ cat("The accuracy of svm polynomial model:", acc*100, "%.\n")
 
 Running Times:
 
-```{r random forest running_time}
+```{r running_time}
 cat("Time for training model=", tm_svm_polynomial_train[1], "s \n") 
 cat("Time for testing model=", tm_svm_polynomial_test[1], "s \n")
 ```
@@ -871,8 +871,9 @@ if (run.svm.polynomial.prob.cv.test) {
 
 Train:
 ```{r}
+tm_svm_polynomial_prob_train <- NA
 if (run.train.svm.polynomial) {
-  sclassifier.polynomial.prob = svm(formula=label~., data=dat_train, type="C", kernel="polynomial", probability=TRUE, degree=max.deg)
+  tm_svm_polynomial_prob_train <- system.time(sclassifier.polynomial.prob <- svm(formula=label~., data=dat_train, type="C", kernel="polynomial", probability=TRUE, degree=max.deg))
   save(sclassifier.polynomial.prob, file="../output/svmclassifier_polynomial_prob.RData")
 } else{ 
   load(file="../output/svmclassifier_polynomial_prob.RData")
@@ -890,8 +891,9 @@ if (plot.svm.polynomial.prob) {
 
 Test:
 ```{r}
+tm_svm_polynomial_prob_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred_prob <- predict(sclassifier.polynomial.prob, testset, decision.values = TRUE, probability = TRUE)
+tm_svm_polynomial_prob_test <- system.time(ypred_prob <- predict(sclassifier.polynomial.prob, testset, decision.values = TRUE, probability = TRUE))
 ```
 
 Evaluate accuracy and auc:
@@ -915,6 +917,14 @@ auc_prob <- auc(r_prob, min=0, max=1)
 cat("The auc of svm prob. polynomial model:", auc_prob)
 ```
 
+Running Times:
+
+```{r}
+cat("Time for training model=", tm_svm_polynomial_prob_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_polynomial_prob_test[1], "s \n")
+```
+
+
 
 * Linear SVM:
 
@@ -925,8 +935,9 @@ plot.svm.linear <- FALSE
 
 Train:
 ```{r}
+tm_svm_linear_train <- NA
 if (run.train.svm.linear) {
-  sclassifier.linear =svm(formula=label~., data=dat_train, type="C", kernel="linear")
+  tm_svm_linear_train <- system.time(sclassifier.linear =svm(formula=label~., data=dat_train, type="C", kernel="linear"))
   save(sclassifier.linear, file="../output/svmclassifier_linear.RData")
  } else{
   load(file="../output/svmclassifier_linear.RData")
@@ -935,8 +946,9 @@ if (run.train.svm.linear) {
 
 Test:
 ```{r}
+tm_svm_linear_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred <- predict(sclassifier.linear, testset) 
+tm_svm_linear_test <- system.time(ypred <- predict(sclassifier.linear, testset)) 
 ```
 
 Plot (feature 1 and feature 2) :
@@ -959,6 +971,13 @@ acc <- num/den
 cat("The accuracy of svm linear model:", acc*100, "%.\n")
 ```
 
+Running Times:
+
+```{r}
+cat("Time for training model=", tm_svm_linear_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_linear_test[1], "s \n")
+```
+
 * Probabilistic Linear SVM:
 
 ```{r}
@@ -968,8 +987,9 @@ plot.svm.linear.prob <- FALSE
 
 Train:
 ```{r}
+tm_svm_linear_prob_train <- NA
 if (run.train.svm.linear.prob) {
-  sclassifier.linear.prob = svm(formula=label~., data=dat_train, type="C", kernel="linear", probability=TRUE)
+  tm_svm_linear_prob_train <- system.time(sclassifier.linear.prob <- svm(formula=label~., data=dat_train, type="C", kernel="linear", probability=TRUE))
   save(sclassifier.linear.prob, file="../output/svmclassifier_linear_prob.RData")
  } else{
   load(file="../output/svmclassifier_linear_prob.RData")
@@ -987,8 +1007,9 @@ if (plot.svm.linear.prob) {
 
 Test:
 ```{r}
+tm_svm_linear_prob_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred_prob <- predict(sclassifier.linear.prob, testset, decision.values = TRUE, probability = TRUE)
+tm_svm_linear_prob_test <- system.time(ypred_prob <- predict(sclassifier.linear.prob, testset, decision.values = TRUE, probability = TRUE))
 ```
 Evaluate accuracy and auc:
 
@@ -1011,6 +1032,12 @@ auc_prob <- auc(r_prob, min=0, max=1)
 cat("The auc of svm prob. linear model:", auc_prob)
 ```
 
+Running Times:
+
+```{r}
+cat("Time for training model=", tm_svm_linear_prob_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_linear_prob_test[1], "s \n")
+```
 
 
 * Radial SVM:
@@ -1022,8 +1049,9 @@ plot.svm.radial <- FALSE
 
 Train:
 ```{r}
+tm_svm_radial_train <- NA
 if (run.train.svm.radial) {
-  sclassifier.radial <- svm(formula=label~., data=dat_train, type="C", kernel="radial")
+  tm_svm_radial_train <- system.time(sclassifier.radial <- svm(formula=label~., data=dat_train, type="C", kernel="radial"))
   save(sclassifier.radial, file="..output/svmclassifier_radial.RData")
 } else {
   load(file="../output/svmclassifier_radial.RData")
@@ -1031,8 +1059,9 @@ if (run.train.svm.radial) {
 ```
 Test: 
 ```{r}
+tm_svm_radial_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred <- predict(sclassifier.radial, testset) 
+tm_svm_radial_test <- system.time(ypred <- predict(sclassifier.radial, testset))
 ```
 
 Plot (feature 1 and feature 2) :
@@ -1054,6 +1083,12 @@ den <- n1+n2+n3+n4
 acc <- num/den
 cat("The accuracy of svm radial model:", acc*100, "%.\n")
 ```
+Running Times:
+
+```{r}
+cat("Time for training model=", tm_svm_radial_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_radial_test[1], "s \n")
+```
 
 * Probabilistic Radial SVM:
 ```{r}
@@ -1063,19 +1098,15 @@ plot.svm.radial.prob <- FALSE
 
 Train:
 ```{r}
+tm_svm_radial_prob_train <- NA
 if (run.train.svm.radial.prob) {
-  sclassifier.radial.prob <- svm(formula=label~., data=dat_train, type="C", kernel="radial", probability=TRUE) 
+  tm_svm_radial_prob_train <- system.time(sclassifier.radial.prob <- svm(formula=label~., data=dat_train, type="C", kernel="radial", probability=TRUE))
   save(sclassifier.radial.prob, file="..output/svmclassifier_radial.RData")
 } else {
   load(file="../output/svmclassifier_radial.RData")
   }
 ```
 
-Test: 
-```{r}
-testset <- as.matrix(dat_test[, -6007])
-ypred <- predict(sclassifier.radial, testset) 
-```
 
 Plot (feature 1 and feature 2) :
 ```{r}
@@ -1086,8 +1117,9 @@ if (plot.svm.radial.prob) {
 
 Test:
 ```{r}
+tm_svm_radial_prob_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred_prob <- predict(sclassifier.radial.prob, testset, decision.values = TRUE, probability = TRUE)
+tm_svm_radial_prob_test <- system.time(ypred_prob <- predict(sclassifier.radial.prob, testset, decision.values = TRUE, probability = TRUE))
 ```
 
 Evaluate accuracy and auc:
@@ -1110,6 +1142,12 @@ r_prob <- roc(predictor= prob_vec_1, response= factor(dat_test$label))
 auc_prob <- auc(r_prob, min=0, max=1)
 cat("The auc of svm prob. radial model:", auc_prob)
 ```
+Running Times:
+
+```{r}
+cat("Time for training model=", tm_svm_radial_prob_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_radial_prob_test[1], "s \n")
+```
 
 
 
@@ -1123,8 +1161,9 @@ plot.svm.sigmoid <- FALSE
 Train:
 
 ```{r}
+tm_svm_sigmoid_train <- NA
 if (run.train.svm.sigmoid) {
-  sclassifier.sigmoid <- svm(formula=label~., data=dat_train, type="C", kernel="sigmoid")
+  tm_svm_sigmoid_train <- system.time(sclassifier.sigmoid <- svm(formula=label~., data=dat_train, type="C", kernel="sigmoid"))
   save(sclassifier.sigmoid, file="../output/svmclassifier_sigmoid.RData")
 } else {
   load(file="../output/svmclassifier_sigmoid.RData")
@@ -1133,8 +1172,9 @@ if (run.train.svm.sigmoid) {
 
 Test: 
 ```{r}
+tm_svm_sigmoid_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred <- predict(sclassifier.sigmoid, testset) 
+tm_svm_sigmoid_test <- system.time(ypred <- predict(sclassifier.sigmoid, testset))
 ```
 
 Plot (feature 1 and feature 2) :
@@ -1157,6 +1197,14 @@ acc <- num/den
 cat("The accuracy of svm sigmoid model:", acc*100, "%.\n")
 ```
 
+Running Times:
+
+```{r}
+cat("Time for training model=", tm_svm_sigmoid_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_sigmoid_test[1], "s \n")
+```
+
+
 * Probabilistic Sigmoid SVM:
 
 ```{r}
@@ -1167,8 +1215,9 @@ plot.svm.sigmoid.prob <- FALSE
 Train:
 
 ```{r}
+tm_svm_sigmoid_prob_train <- NA
 if (run.train.svm.sigmoid.prob) {
-  sclassifier.sigmoid.prob <- svm(formula=label~., data=dat_train, type="C", kernel="sigmoid", probability=TRUE)
+  tm_svm_sigmoid_prob_train <- system.time(sclassifier.sigmoid.prob <- svm(formula=label~., data=dat_train, type="C", kernel="sigmoid", probability=TRUE))
   save(sclassifier.sigmoid.prob, file="../output/svmclassifier_sigmoid_prob.RData")
 } else {
   load(file="../output/svmclassifier_sigmoid_prob.RData")
@@ -1177,8 +1226,9 @@ if (run.train.svm.sigmoid.prob) {
 
 Test: 
 ```{r}
+tm_svm_sigmoid_prob_test <- NA
 testset <- as.matrix(dat_test[, -6007])
-ypred_prob <- predict(sclassifier.sigmoid.prob, testset, decision.values = TRUE, probability = TRUE)
+tm_svm_sigmoid_prob_test <- system.time(ypred_prob <- predict(sclassifier.sigmoid.prob, testset, decision.values = TRUE, probability = TRUE))
 ```
 
 Plot (feature 1 and feature 2) :
@@ -1210,7 +1260,12 @@ auc_prob <- auc(r_prob, min=0, max=1)
 cat("The auc of svm prob. sigmoid model:", auc_prob)
 ```
 
+Running Times:
 
+```{r}
+cat("Time for training model=", tm_svm_sigmoid_prob_train[1], "s \n") 
+cat("Time for testing model=", tm_svm_sigmoid_prob_test[1], "s \n")
+```
 
 
 ## Model 5: elastic net
